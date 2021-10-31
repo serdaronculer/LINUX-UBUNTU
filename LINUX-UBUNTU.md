@@ -88,44 +88,46 @@ Linux dosya sistemi içerisinde gezinmek için kullanılır. Büyük küçük ha
 
 **man-cd**
 
-**man –cd** komutu ile hakkında detaylı bilgi ve parametrelere ulaşılabilir.
+**`man -cd`** komutu ile hakkında detaylı bilgi ve parametrelere ulaşılabilir.
 
 Örnek kullanımı;
 
-**cd home/Desktop**
+**`cd home/Desktop`**
 
 Böylece home dizini altındaki Desktop dizinine girecektir.
 # **2-pwd Komutu**
 
 Pwd komutu o an hangi dizin içerisinde bulunduğumuzu gösterir. Kesin ve net bir konum bilgisi sağlar. Kullanımı;
 
-**pwd**
+**`pwd`**
 # **3-man komutu**
 Komutun alabileceği tüm parametreleri ve neler yapabileceğini gösterir. Örneğin;
 
-**man ls**
+**`man ls`**
 # **4-ls komutu**
 Ls komutu bulunan dizin içerisinde ki dizin ve dosyaları listeler.
 
-**Ls  dizin içerisinde bulunan dizin ve dosyaları listeler**
+**`ls`  dizin içerisinde bulunan dizin ve dosyaları listeler**
 
-**Ls \*.htm  uzantısı htm olan dosyaları listeler.**
+**`ls *.htm`  uzantısı htm olan dosyaları listeler.**
 
-**L -** parametresi kullanıldığında dosya ve klasörleri ayrıntılı listeler.
+**`l -`** parametresi kullanıldığında dosya ve klasörleri ayrıntılı listeler.
 
 ![](img/Aspose.Words.b6e0df8a-337a-49f3-bb0c-f932a633c435.003.png) 
 
 Çıktıda en solda ki harfler belirli anlamlar barındırır.
 
-İlk harf ögenin dosya mı yoksa klasör mü olduğunu gösterir.   **d** ise klasör, **-** ise dosyadır
+İlk harf ögenin dosya mı yoksa klasör mü olduğunu gösterir.
+**d** ise klasör, 
+**-** ise dosyadır
 
 **r**: Okuma iznini belirtir.
 **w**: Yazma iznini belirtir.
-**x**:                                  Yürütme                                  iznini                                 belirtir.
+**x**: Yürütme iznini belirtir.
 
 Yani **boot** klasöründen örnek verecek olursak;
 
-Drwxr-xr-x  -> Bu bir klasör olduğu ve sahibinin okuma,yazma,yürütme  -  grubunun okuma,yürütme  -  diğerlerinin  yürütme izni vardır.
+`drwxr-xr-x`  -> Bu bir klasör olduğu ve sahibinin okuma,yazma,yürütme  -  grubunun okuma,yürütme  -  diğerlerinin  yürütme izni vardır.
 
 
 
@@ -140,7 +142,7 @@ Linux’ta ki her şey dosya olduğu için dosya sistem güvenliği çok önemli
 - **w - Yazma izni(write)**
 - **x - Çalıştırma izni(execute)**
 
-Dosya ve dizinlerin izinlerini öğrenmek için ”**stat”** veya “**ls -l”** komutunu kullanabiliriz. **ls-l** komutu ile dizin içerisinde ki bütün dosyaların izinlerini görebiliriz. ”**stat”** komutu ile istediğimiz dosyanın erişim iznini görebiliriz.
+Dosya ve dizinlerin izinlerini öğrenmek için **`stat`** veya **`ls -l`** komutunu kullanabiliriz. **`ls-l`** komutu ile dizin içerisinde ki bütün dosyaların izinlerini görebiliriz. **`stat`** komutu ile istediğimiz dosyanın erişim iznini görebiliriz.
 
 ![](img/Aspose.Words.b6e0df8a-337a-49f3-bb0c-f932a633c435.004.png)
 
@@ -189,11 +191,11 @@ chmod komutunun aldığı parametrede ki anlamsal ifadeler;
 - **w** - yazma yetkisi(write)
 - **x** - çalıştırma yetkisi(execute)
 
-**Chmod o+w <dosyaAdi>** Diğer kullanıcılara yazma yetkisi verir.
+**`chmod o+w <dosyaAdi>`** Diğer kullanıcılara yazma yetkisi verir.
 
-**Chmod ug+rwx <dosyaAdi>** Dosya sahibi ve grubuna okuma,yazma ve çalıştırma yetkisi verir.
+**`chmod ug+rwx <dosyaAdi>`** Dosya sahibi ve grubuna okuma,yazma ve çalıştırma yetkisi verir.
 
-**Chmod o-w <dosyaAdi>** Diğer kullanıcıların yazma yetkisini kaldırır
+**`chmod o-w <dosyaAdi>`** Diğer kullanıcıların yazma yetkisini kaldırır
 
 2. **Kullanımı**
 
@@ -210,23 +212,23 @@ Chmod da sayısal ifadelerle de yetkilendirme yapabiliriz.
 
 Örneğin dosya sahibine okuma,yazma çalıştırma yetkisi verelim
 
-Yani o halde 4+2+1 = 7 rakamını vereceğiz.
+Yani o halde 4+2+1 = **7** rakamını vereceğiz.
 
-Grubuna okuma ve yazma yetkisi verelim. 4+2 = 6 vereceğiz
+Grubuna okuma ve yazma yetkisi verelim. 4+2 = **6** vereceğiz
 
-Diğer kullanıcılara da yalnızca okuma yetkisi verelim 4 vereceğiz
+Diğer kullanıcılara da yalnızca okuma yetkisi verelim **4** vereceğiz
 
-O halde **chmod 764 <dosyaAdi>** olacaktır.
+O halde **`chmod 764 <dosyaAdi>`** olacaktır.
 
 #
 # **2-Dosya ve Dizin sahibini değiştirmek**
 **chown** komutu ile dosya veya dizin sahibini değiştirebiliriz.
 
-**chown <Kullanici> <dosyaAdi>**
+**`chown <Kullanici> <dosyaAdi>`**
  # **3-Dosya ve Dizin grubunu değiştirmek**
 chgp komutu ile dosya veya dizin grubunu değiştirebiliriz.
 
-**chgrp <grup> <dosyaAdi>**
+**`chgrp <grup> <dosyaAdi>`**
 
 
 # **LINUX DOSYA VE DIZIN KOMUTLARI**
@@ -235,35 +237,38 @@ Genel olarak dosya oluşturmak için kullanılır. Ancak komutun ana işlevi mev
 
 Parametre olarak verilen dosya mevcut değilse oluşturulur. Kullanımı;
 
-**Touch <dosyaAdi>**
+**`touch <dosyaAdi>`**
 
-**Touch dosya1**
+**`touch dosya1`**
+
 # **2-mkdir**
 Klasör oluşturmak için kullanılır. Yeni bir dizin oluşturulabilir.
 
-**Mkdir <dosyaAdi>**
+**`mkdir <dosyaAdi>`**
 
-**Mkdir klasor1**
+**`Mkdir klasor1`**
 # **3-mv**
 Dosya ve dizin taşımak veya yeniden adlandırmak için kullanılır.
 
-**Mv <kaynak> <hedef>**
+**`mv <kaynak> <hedef>`**
 
-**Mv dosya1  serdar/Desktop/**
+**`mv dosya1  serdar/Desktop/`**
 
-**Mv <eski\_isim> <yeni\_isim>**
+**`mv <eski\_isim> <yeni\_isim>`**
 
-**Mv dosya1  dosya1Yeni**
+**`mv dosya1  dosya1Yeni`**
+
 # **4-cp**
 Dosya kopyalamak için kullanılır.
 
 Dizin kopyalamak için **–r** parametresi almalıdır.
 
-**Cp <kaynak> <hedef>**
+**`cp <kaynak> <hedef>`**
 
-**Cp dosya1   serdar/Desktop/**
+**`cp dosya1   serdar/Desktop/`**
 
-**Cp -r dizin1/   home/serdar/**
+**`cp -r dizin1/   home/serdar/`**
+
 # **5-rm**
 Dosya silmek için kullanılır.
 
@@ -271,60 +276,65 @@ Dosyayı silmeye zorlamak için **–f** parametresi kullanılır
 
 Dizin silmek için **–r** parametresi almalıdır.
 
-**Rm <dosyaAdi>**
+**`rm <dosyaAdi>`**
 
-**Rm -r <dizinAdi>**
+**`rm -r <dizinAdi>`**
 # **6-cat**
 Dosya içeriğini okumak için kullanılır. Ayrıca  dosya içerisine yazmak içinde kullanılabilir.
 
-**Cat <dosyaAdi>**          dosyayı okur.
+**`cat <dosyaAdi>`**          dosyayı okur.
 
-**Cat -n <dosyaAdi>**  -n parametresi ile dosya içine yazılabilir. Yazdıktan sonra çıkmak için **ctrl+z**
+**`cat -n <dosyaAdi>`**  -n parametresi ile dosya içine yazılabilir. Yazdıktan sonra çıkmak için **ctrl+c**
 # **7-head**
 Dosya içeriğini dosya başından itibaren okumak için kullanılır. Varsayılan olarak ilk 10 satırı okur. Satır sayısı belirtmek için -n parametresi kullanılır
 
-**Head <dosyaAdi>, Head -n20 <dosyaAdi>**
+**`head <dosyaAdi>` , `head -n20 <dosyaAdi>`**
 # **8- tail**
 Dosya içeriğini sonundan itibaren okumak için kullanılır. Varsayılan olarak ilk 10 satırı okur. Satır sayısı belirtmek için -n parametresi kullanılır
 
-**Tail <dosyaAdi>, Tail -n15 <dosyaAdi>**
+**`tail <dosyaAdi>` , `tail -n15 <dosyaAdi>`**
 # **9-more**
 Dosya içeriğini parça parça okumak için kullanılır. Sayfaları ilerlemek için **space**, komuttan çıkmak için **q** tuşu kullanılır
 
-**More <dosyaAdi>**
+**`more <dosyaAdi>`**
 # **10-less**
 Dosya içeriğini **more** komutundan daha fazla seçenekle parça parça okumak için kullanılır. Yukarı aşşağı tuşu ile sıralı okunabilir.
 
-**Less <dosyaAdi>**
+**`less <dosyaAdi>`**
 # **11-nl**
 Dosya içeriğini satır numarası ekleyerek okuma yapar.
+**`nl <dosyaAdi>`**
 # **12-pr**
 Dosya içeriğini sayfalayarak okumak için kullanılır.
+**`pr <dosyaAdi>`**
 # **13-file**
 Dosya ile ilgili bilgi almak için kullanılır.
+**`file <dosyaAdi>`**
 # **14-stat**
 Dosya ile ilgili detaylı bilgi almak için kullanılır.
+**`stat <dosyaAdi>`**
 
 
 # **LINUX ARAMA KOMUTLARI**
 # **1-grep**
 Dosya içerisinde harf veya kelimeyi arar. Dosya içerisinde arama yapar.
+**`grep <aranacakKelime> <dosyaAdi>`**
 
 **-v parametresi ile dosya içinde bulunmayan kelimeleri getirir.**
+**`grep –v  <aranmayacakKelime> <dosyaAdi>`**
 
 **-i parametresi ile büyük-küçük harf duyarlılığını kaldırır.**
+**`grep –i  <aranacakKelime> <dosyaAdi>`**
 
 **-r parametresi aramayı dizin altında ki tüm dosya ve dizinlerde yapar.**
+**`grep –r  <aranacakKelime> <dizinAdi>`**
 
 **-ir parametresi arama sırasında başlangıç (^) ve bitiş ($) karakterleri ile arama yapılabilir.**
 
-**Grep <aranacakKelime> <dosyaAdi>, grep –v  <aranmayacakKelime> <dosyaAdi>**
+**`grep -ir <^aranacakKelime> <dosyaAdi>`** 
 
-**Grep -r <aranacakKelime> <dizinAdi>**
+**`grep -ir ‘Ka’ dosya1`**
 
-**Grep -ir <^aranacakKelime> <dosyaAdi>** 
-
-**Grep  ‘Ka’ dosya1**
 # **2-find**
 Geniş bir kullanımı olan arama komutudur.
 
@@ -334,11 +344,11 @@ Geniş bir kullanımı olan arama komutudur.
 
 -type belirtmezsek o isme sahip dosya ve dizinleri listeler.
 
-**Find <aramaYapilacakDizin> <opsiyon –name/-type> <aranacakOrgu>**
+**`find <aramaYapilacakDizin> <opsiyon –name/-type> <aranacakOrgu>`**
 
-**Find / -name “Error.log”**
+**`find / -name “Error.log”`**
 
-**Find / -type d  -name “dizinSerdar”**
+**`find / -type d  -name “dizinSerdar”`**
 
 Belirli bir uzantıya ait dosyaları aramak için <\*.txt>  gibi kullanılabilir.
 
@@ -346,25 +356,25 @@ Aranacak dosya veya dizin adı tam olarak bilinmiyorsa <aran\*> gibi kullanılab
 
 Boş dosya veya dizinleri bulmak için sonuna  **-empty** parametresi kullanılır. 
 
-**find <arama\_yeri> -name <aranan> -empty** gibi
+**`find <arama\_yeri> -name <aranan> -empty`** gibi
 
 Bulunan ifadeler için komut çalıştırmak için **exec** parametresi kullanılır.
 
 Örneğin rm komutu ile bulunanı sileceğiz..
 
-**Find<aramaYapilacakDizin>  -name <aranacak> -exec rm -r {} \;**
+**`find<aramaYapilacakDizin>  -name <aranacak> -exec rm -r {} \;`**
 
 Boyuta göre KB cinsinden arama yapması için;
 
-**Find  /etc  -size 500**
+**`find  /etc  -size 500`**
 
 **Sunucuda tüm .log dosyaları bulmak istersek, \* işaretini kullanırız**
 
-**Find / -name “\*.log”**
+**`find / -name “\*.log”`**
 # **3- Locate**
 Locate komutu find komutu gibi dosya adı ile arama yapmamızı sağlar ancak find komutundan çok daha hızlıdır. Çünkü find taramaları gerçek zamanlı yaparken **locate dosyayı daha önce katoglanmış veritabanından tarar.**
 
-Locate komutu **/**var**/**lib**/**mlocate**/**mlocate.db isimli veritabanını kullanmaktadır.
+Locate komutu **var/lib/mlocate/mlocate.db** isimli veritabanını kullanmaktadır.
 
 Locate komutunu kullanmadan önce **updatedb** komutunu çalıştırmalıyız. Sebebi ise mlocatedb veritabanını **updatedb** komutu oluşturur ve günceller. Veritabanının güncel kalması için sorgulama sırasında çalıştırılması gerekir.
 
@@ -372,21 +382,21 @@ Ancak updatedb komutunu root kullanıcısı veya sudo olarak çalıştırmamız 
 
 Bunun için root olarak giriş yapmalı veya sudo ile;
 
-**Sudo updatedb** Komutunu kullanmalıyız.
+**`sudo updatedb`** Komutunu kullanmalıyız.
 
 Eğer terminalde komut tanınmaz ise sistem tarafından ön yüklü değildir. Bunun **için mlocate paketini** kurmalıyız. 
 
-Linux dağıtımı olan Ubuntu için :  sudo apt install mlocate 
+Linux dağıtımı olan Ubuntu için :  `sudo apt install mlocate` 
 
 Böylece mlocate paketini kurmuş olacağız. Ardından updatedb komutunu kullanıp veritabanımızı güncelledik. Artık **locate** komutunu kullanabiliriz.
 
-**Locate <dosyaAdi>**
+**`locate <dosyaAdi>`**
 
-**Locate dosyaAdi**
+**`Locate dosyaAdi`**
 
 Eğer küçük-büyük harf duyarlılığını istemiyorsak **-i** parametresini kullanabiliriz.
 
-**Locate -i DOSYaADi**
+**`locate -i DOSYaADi`**
 # **4-whereis ve which**
 
 # **LINUX SIKIŞTIRMA IŞLEMLERI**
@@ -415,28 +425,28 @@ Komutun alabileceği parametrelerden bazıları;
 
 **r**- var olan arşive yeni dosya ekler.
 
-**Tar <parametre> <arsivinAdi.uzantisi>  <sıkıstırlacakDosyalar>**
+**`tar <parametre> <arsivinAdi.uzantisi>  <sıkıstırlacakDosyalar>`**
 
-**Tar  -cf   dosyalar.tar   dosya1  dosya2**
+**`tar  -cf   dosyalar.tar   dosya1  dosya2`**
 
-**Tar  -xf   dosyalar.tar   -C  /home/serdar/   tüm dosyaları istenilen dizine çıkarır**
+**`tar  -xf   dosyalar.tar   -C  /home/serdar/`   tüm dosyaları istenilen dizine çıkarır**
 
-**Tar  -xf   dosyalar.tar    dosya1  -C /home/serdar yalnızca dosya1 i çıkarır**
+**`tar  -xf   dosyalar.tar    dosya1  -C /home/serdar/` yalnızca dosya1 i çıkarır**
 
-**Tar  -rf   dosyalar.tar    dosya3   var olan arşive dosya3 ü ekler**
+**`tar  -rf   dosyalar.tar    dosya3`   var olan arşive dosya3 ü ekler**
 
-**Tar  -tf   dosyalar.tar      arşiv içindeki dosyaları listeler**
+**`tar  -tf   dosyalar.tar`      arşiv içindeki dosyaları listeler**
 
 **Sadece belirli dosya uzantısına ait dosyaları arşivden çıkarmak istersek –wildcards kullanılabilir.**
 
-**Tar  -xf  dosyalar.tar –wildcards   ‘\*.jpg’**
+**`tar  -xf  dosyalar.tar –wildcards   ‘\*.jpg’`**
 #
 # **LINUX METIN DUZENLEYICILER**
 
 # **1-nano metin editörü**
 Nano metin düzenleyicisi sistemde yüklü olmayabilir. Yüklü olup olmadığını
 
-**Nano –version** komutu ile öğrenebiliriz. 
+**`nano –version`** komutu ile öğrenebiliriz. 
 
 Eğer nano metin düzenleyicisi yüklü değilse
 
@@ -444,11 +454,11 @@ Linux dağıtmı Ubuntu için : sudo apt-get install nano ile paketi kurabiliriz
 
 Nano ile bir dosya açmak için ;
 
-**Nano <dosyaAdi>** komutunu kullanmalıyız. Açılacak dosya ile aynı dizinde olmamız gerekmektedir.
+**`nano <dosyaAdi>`** komutunu kullanmalıyız. Açılacak dosya ile aynı dizinde olmamız gerekmektedir.
 
 Eğer dosya adı belirtmeden, yalnızca **nano** komutu kullanılırsa dosyayı yazdıktan sonra istediğimiz dosya adını verip ait olduğumuz dizinde oluşturabiliriz.
 # **2-vi metin editörü**
-Nanoya göre daha güçlü bir editördür ancak kullanımı daha zordur. Örneğin bir sistem çöktüğü zaman dosyaları nano ile açmak pek mümkün olmayabilir. **Kernel seviyesinde** işimize yarayacak sadece **vi** metin editörüdür. Sebebi ise **Linux vi editör ile yazılmıştır**.
+Nanoya göre daha güçlü bir editördür ancak kullanımı daha zordur. Örneğin bir sistem çöktüğü zaman dosyaları nano ile açmak pek mümkün olmayabilir. **Kernel seviyesinde** işimize yarayacak sadece **vi** metin editörüdür. Sebebi ise **linux vi editör ile yazılmıştır**.
 
 Vi editörü çalışma esnasında üç ayrı mod ile gelir. 
 
@@ -483,35 +493,35 @@ Silme, geriye alma, aşağı satıra geçmek için tekrar yazı modundan **ESC i
 
 **5+x -> ile 5 karakter soldan sağa doğru siler**
 
-**Dd -> ile  ilgili satırı siler**
+**dd -> ile  ilgili satırı siler**
 
 **5+dd -> ile yukarıdan aşağıya 5 adet satır siler**
 
-**U -> bir defaya mahsus geri getirir**
+**u -> bir defaya mahsus geri getirir**
 
 Menü modunda satırlar arası yön tuşları ile gezilebilir ancak kernel seviyesinde yapabilmek için; 
 
-**Menü modunda “K” tuşu ile yukarı;**
+**Menü modunda “k” tuşu ile yukarı;**
 
-**Menü modunda “J” tuşu ile aşağı;**
+**Menü modunda “j” tuşu ile aşağı;**
 
-**Menü modunda “H” tuşu ile sola**
+**Menü modunda “h” tuşu ile sola**
 
-**Menü modunda “L” tuşu ile sağa**
+**Menü modunda “l” tuşu ile sağa**
 
 Kelimeler de arama yapmak için;
 
-**/ yani -> shift+7** 
+**/ yani -> shift+7** tuşuna basmalıyız.
 
 command kipine ise vi modundayken “:” ile girilir. İstisna olarak arama yapmak içinde “/” ile girilir.
 
 Bir kelimeyi replace etmek için
 
-**:%s/EskiKelime/YeniKelime/g NOT: BÜTÜN AYNI ISME SAHIP KELİMELERİ REPLACE ETMEKTEDİR.**
+**`:%s/EskiKelime/YeniKelime/g` NOT: BÜTÜN AYNI ISME SAHIP KELİMELERİ REPLACE ETMEKTEDİR.**
 
 Bir metnin üst satırına yeni bir satır açıp yazı yazmak istersek;
 
-**Shift+o** kullanmalıyız
+**Shift+o** tuşunu kullanmalıyız
 
 ![](img/Aspose.Words.b6e0df8a-337a-49f3-bb0c-f932a633c435.005.png)
 # **LINUX CONFIGURATION**
@@ -520,9 +530,9 @@ Bir metnin üst satırına yeni bir satır açıp yazı yazmak istersek;
 **İfconfig** komutu ile ipv4,ipv6,mac adresi öğrenilebilir.
 1. # **Netplan kullanarak Static IP Yapılandırma**
 
-Ip yapılandırma işlemi için netplan dosyasına erişmeliyiz. Bu dosya /etc/netplan/ dizininin içerisinde bulunmaktadır.
+Ip yapılandırma işlemi için netplan dosyasına erişmeliyiz. Bu dosya `/etc/netplan/` dizininin içerisinde bulunmaktadır.
 
-Bu dosya Ubuntu 18.04.01 versiyonundan önce etc/network/interfaces/ dizininin içerisinde bulunmaktaydı. Ancak yeni versiyonuyla beraber sistem değişikliğine gidildi.
+Bu dosya Ubuntu 18.04.01 versiyonundan önce `etc/network/interfaces/` dizininin içerisinde bulunmaktaydı. Ancak yeni versiyonuyla beraber sistem değişikliğine gidildi.
 
 Öncelikle ethernet cihaz adına bakalım;
 
@@ -530,7 +540,7 @@ Bu dosya Ubuntu 18.04.01 versiyonundan önce etc/network/interfaces/ dizininin i
 
 Daha sonra belirtilen dosya yoluna;
 
-**cd /etc/netplan/** komutu ile girebiliriz.
+**`cd /etc/netplan/`** komutu ile girebiliriz.
 
 Kullandığınız metin editörü ile dosyayı açalım.  (nano ile açabilirsiniz)
 
@@ -542,7 +552,7 @@ Kullandığınız metin editörü ile dosyayı açalım.  (nano ile açabilirsin
 
 Öncelik olarak ethernets: altına ifconfigden öğrendiğimiz cihaz adını yazıyoruz.
 
-Static istedğimiz için **dhcp4: no** -> hayır olarak işaretliyoruz
+Static istedğimiz için **`dhcp4: no`** -> hayır olarak işaretliyoruz
 
 **Addresses** kısmına istediğimiz ip adresini atıyoruz. **/24** olan kısım ise ağ maskemiz. **255.255.255.0 olarak atama** işlemi yapacaktır.
 
@@ -556,11 +566,11 @@ Ip adreslerinin **virgül ile ayrılması** gerekmektedir. Örneğin;
 
 Dosyayı kaydettikten sonra yapılandırma dosyasını test etmeliyiz. Bunun için;
 
-**sudo netplan try** komutunu kullanabiliriz.
+**`sudo netplan try`** komutunu kullanabiliriz.
 
 Eğer herhangi bir sorun yoksa yapılandırma dosyasının kabul edildiğine dair mesaj gelecektir. Enter tuşu ile işlemi tamamlayabiliriz.
 
-Ardından **yapılandırmayı uygulamak** için **sudo netplan apply** komutunu çalıştıralım. Böylece yapmış olduğumuz ayarlar tamamlanacaktır.
+Ardından **yapılandırmayı uygulamak** için **`sudo netplan apply`** komutunu çalıştıralım. Böylece yapmış olduğumuz ayarlar tamamlanacaktır.
 
 
 

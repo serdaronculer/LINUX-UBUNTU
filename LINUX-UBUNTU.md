@@ -1,4 +1,4 @@
-﻿# **LINUX NEDİR**
+﻿﻿# **LINUX NEDİR**
 Linux bilinenin aksine bir işletim sistemi değil, **işletim sistemi çekirdeğidir.** 
 
 **Linux dağıtımları** ise Linux çekirdeğinin üzerine eklenen yazılım ve araçlara denir. Yani Linux dağıtımları Linux çekirdeğini işletim sistemi haline getirir.
@@ -112,6 +112,10 @@ Ls komutu bulunan dizin içerisinde ki dizin ve dosyaları listeler.
 **`ls *.htm`  uzantısı htm olan dosyaları listeler.**
 
 **`l -`** parametresi kullanıldığında dosya ve klasörleri ayrıntılı listeler.
+
+**`l -F`** parametresi kullanıldığında dizin içerisinde ki dosya türlerinin ne olduğunu gösterir.
+
+
 
 ![](img/Aspose.Words.b6e0df8a-337a-49f3-bb0c-f932a633c435.003.png) 
 
@@ -524,15 +528,361 @@ Bir metnin üst satırına yeni bir satır açıp yazı yazmak istersek;
 **Shift+o** tuşunu kullanmalıyız
 
 ![](img/Aspose.Words.b6e0df8a-337a-49f3-bb0c-f932a633c435.005.png)
+
+
+
+
+
+# LINUX KULLANICI  ISLEMLERI
+
+## Kullanıcı Ekleme
+
+Kullanıcı eklemenin 2 ayrı seçeneği ve komutu vardır;
+
+- **useradd Komutu**
+- **adduser Komutu**
+
+
+
+#### 1-adduser komutu
+
+Yeni bir kullanıcı eklemek istiyorsak **`adduser <kullaniciAdi>`**  komutunu kullanmalıyız. Bu komut ile beraber sistem yeni bir kullanıcı oluşturup, o kullanıcıya ait bir ev dizinini otomatik oluşturacaktır. Örnek olarak bir kullanıcı ekleme işlemi yapalım.
+
+![](img/adduser1.png)
+
+Böylece ornekkullanıcısı oluşturulmuş ve ornek grubuna dahil edildi. Yapılan işlemleri teyit etmek amaçlı, sistemde kullanıcı hesaplarının tutulduğu **`/etc/passwd`** dosyasına göz atabiliriz.
+
+![](img/adduser2.png)
+
+Dosya içerisinde ornek kullanıcısının eklenmiş olduğunu görmüş olduk.
+
+**`/etc/group`** dosyasını da incelediğimizde kullanıcımızın kaydedildiği yerleri görebiliriz.
+
+![](img/adduser4.png)
+
+Aynı zamanda **`adduser`** komutunun kullanıcıya ait ev dizini oluşturduğunu da söylemiştik. Bunu da kontrol edecek olursak;
+
+![](img/adduser3.png)
+
+
+
+
+
+#### 2-useradd komutu
+
+useradd komutu nasıl çalıştırıldığına gelmeden önce birkaç bilgi vermek isterim. Useradd komutu kullanıcı ekleme işlemleri için **`adduser`** komutuna nazaran daha düşük seviyelidir. **`useradd`** komutu ile yalnızca kullanıcıyı oluştururuz. Ev dizinine ekleme, şifre oluşturma vb. işlemleri farklı parametre ve komutlarla sağlamalıyız.
+
+
+
+Kullanıcı oluşturma işlemi için  **`useradd <kullaniciAdi>`** komutunu yazmalıyız **ancak** bu işlemi yaparken kullanıcıya ait **home** dizini de oluşturmak istiyorsak **`-m`** parametresini kullanmamız gerekmektedir. 
+
+```
+useradd -m <kullaniciAdi>
+```
+
+Örnek olarak bir kullanıcı ekleyelim;
+
+![](img/useradd1.png)
+
+Böylece "ornek2" kullanıcımızı sisteme eklemiş olduk. 
+
+Kullanıcımızı oluşturtan sonra ona ait bir şifre oluşturmak için **`passwd`** komutunu kullanmalıyız. Şimdi ornek2 kullanıcımız için bir şifre belirleyelim;
+
+![](img/useradd2.png)
+
+Böylece ornek2 kullanıcımızın artık bir şifresi oldu.
+
+Grup oluşturma ve kullanıcıları görme konusu daha sonra ancak değinmişken kullanıcıyı gruba ekleme işlemi sağlayalım. 
+
+Bir kullanıcıyı gruba eklemek için;
+
+![](img/useradd3.png)
+
+Şimdi kullanıcımız gruba gerçekten eklenmiş mi görelim;
+
+**grep**  ile arama yapabilir veya direkt olarak **`/etc/group`** dosyasına girip inceleyebiliriz.
+
+Böylece istediğimiz işlemi sağladık.
+
+
+
+## Kullanıcı Arama Ve Listeleme
+
+Eğer Linux kullanıcılarını listelemek istiyorsak ilk başvuracağımız yer **`/etc/passwd`** dosyası olacaktır.
+
+Dosya içerisinden veya dosya içerisinde arama yaparak(**grep komudu**) kullanıcılarımızı görebiliriz.
+
+Linux kullanıcısının var olup olmadığını görebilmek için;
+
+```
+id <userName>
+```
+
+komutunu kullanmalıyız. Bize çıktı olarak ya böyle bir kullanıcı olmadığını ya da kullanıcnın ait olduğu gruplara dair bilgiler verecektir.
+
+Kullanıcının ait olduğu gruba dair vereceği bilgiden önce **grup sistemi ne olduğu**, hakkında bilgi vermek isterim.  Daha sonrasında bu işlemi grup sistemi konusu içerisinde yapalım.
+
+## Kullanıcı Silme
+
+Bir kullanıcıyı  **`deluser`** komutunu kullanırız.
+
+ Ev diziniyle beraber kullanıcıyı silmek istiyorsak;
+
+```
+deluser --remove-home <kullaniciAdi>
+```
+
+komutunu kullanırız. **`man deluser`** ile aldığı parametreleri görebilirsiniz.
+
+Kullanıcının silindiğinden emin olmak için **`/home`** dizinine `ls` ile bakarak,
+
+**`/etc/group`** ve **`/etc/passwd`** dosyalarından sorgulayabiliriz.
+
+
+
+## Kullanıcı Hesabını Aktif-Pasif Hale Getirmek
+
+
+
+- #### **Kullanıcıyı Pasif Hale Getirmek**
+
+Sistemde kayıtlı olan bir kullanıcıyı kilitleyebiliriz ve böylece kullanıcı sisteme giremeyecektir.
+
+Bir kullanıcının hesabını kilitlemek için **`usermod`** komutunun **`-L`** parametresini kullanırız.
+
+```
+usermod -L <kullaniciAdi>
+```
+
+komutunu kullanırız.
+
+Peki bu komutu girdiğimiz zaman sistemde nasıl bir işlem yapılır. Bildiğimiz üzere **Linux'ta her şey dosyadır.**
+
+Sistemde kullanıcı hesaplarının parolaları **/etc/shadow** dosyası içerisindedir. Bu parolalar dosya içerisinde şifreli olarak gösterilir.
+
+Biz **`usermod -L <kullaniciAdi>`** komutunu yazdığımız zaman sistem **`/etc/shadow`** dosyası içerisinde **kullanıcıya ait şifreli **parolasının önüne **`!`** işareti koyacaktır ve böylece **kullanıcı şifresi ile sisteme giriş yapamayacaktır.**
+
+Sistemde **kullanici2** isimli kullanıcıyı kilitleyelim **ama öncesinde** bahsettiğimiz **shadow** dosyasına bakalım.
+
+![](img/useradd11.png)
+
+Gördüğümüz üzere **kullanici2** nin parolası şifreli bir şekilde görünüyor. Ancak **önünde `!` simgesi yok**. Yani şuan kullanıcımızı kilitlemedik. Şimdi kullanıcımızı kilitleyelim.
+
+![](img/useradd12.png)
+
+Kullanıcımızı kilitledik. Şimdi gerçekten kilitlenmiş mi diye **shadow** dosyamıza bakalım ve **!** işareti var mı kontrol edelim.
+
+![](img/useradd13.png)
+
+Evet yazdığımız komut sayesinde **kullanici2** yi kilitledik ve artık sisteme giriş yapamayacaktır.
+
+- #### **Kullanıcıyı Aktif Hale Getirmek**
+
+  Kullanıcımızın kilidini açmak ve aktif hale getirmek için **`usermod`** komutunun **`-U`** parametresini kullanırız.
+
+  ```
+  usermod -U <kullaniciAdi>
+  ```
+
+  Şimdi kilitli olan **kullanici2** adlı kullanıcımızın kilidini kaldıralım.
+
+  ![](img/useradd14.png)
+
+  **shadow** dosyasında ki **!** işareti kalkacaktır ve kullanıcımız artık giriş yapabilir.
+
+
+
+## KULLANICILAR ARASI KIMLIK DEGISIMI
+
+Sisteme yeni kullanıcı ekleme ve birden çok kullanıcının sistemde olabileceğini biliyoruz. Peki **kullanıcılar arası değişim** nasıl yapabiliriz?
+
+Örneğin ben **serdar** kullanıcısıyla aktifim ve bir işlem yapmam gerekiyor ancak yetki alanımda değil ve **parolasını bildiğim** bir kullanıcının buna yetkisi var. Böyle bir durumda o kullanıcının kimliğine bürünerek gerekli işlemleri gerçekleştirebilir ve geri çıkabilirim.
+
+Peki bunu nasıl yaparız. Bu işlem içi **`su`** komutunu kullanırız. Ancak bu komutun 2 farklı durumu mevcuttur.
+
+**`su <kullaniciAdi>`** olarak işlemimizi gerçekleştirirsek, diğer kullanıcının kimliğine geçeriz.
+
+**`su - <kullaniciAdi>`** olarak işlemimizi gerçekleştirirsek, diğer kullanıcının kimliğine geçer ve **kullanıcının KABUĞUNDA** çalışmaya başlar. 
+
+Buradaki **detay** çok önemlidir. Bunu iyi anlayabilmek adına **normal kullanıcı** ve **root** kullanıcı arasında kimlik değişimleri yapalım.
+
+**root**  adlı kullanıcıdan kimlik değişimi yaparak **serdar**  kullanıcısına geçelim.
+
+![](img/useradd15.png)
+
+**`su serdar`** komutu ile **serdar** kullanıcısına geçtik. Konsol ismine ve **/root** kısmına dikkat edelim lütfen.
+
+**ŞİMDİ `su - serdar` YAZARAK GEÇİŞ YAPALIM**
+
+![](img/useradd16.png)
+
+Gördüğünüz üzere **`su serdar`** komutu kullanarak geçiş yaptığımızda konsolda **`serdar@serdar-VirtualBox:/root$`** yazıyordu.
+
+Ancak **`su - serdar`** komutu kullanarak geçiş yaptığımızda konsolda **`serdar@serdar-VirtualBox:~$`**  yazdı.
+
+Yani **`su -serdar`** komutunu kullandığımızda geçiş yaptığımız **hesabın kabuğunda çalışmaya başladı** ve tıpkı o hesapta oturum açmışız gibi bir tepkiyle karşılaştık.
+
+#### 
+
+# LINUX GRUP ISLEMLERI
+
+
+
+## GRUP YÖNETİMİ
+
+Linux'ta birçok kullanıcı hesabının var olduğu ve bu kullanıcılar arasında en yetkili kullanıcının **root** kullanıcısı olduğunu biliyoruz.
+
+Ancak Linux sisteminde root kullanıcısı olmadan da root kullanıcısına dair yetkilere sahip olmamız mümkün. **Peki bunu nasıl yapıyoruz?**
+
+Grup yönetimi sayesinde aynı grupta yer alan kullanıcılar aynı haklara sahip olmaktadırlar. Yani kullanıcıları belirli gruplara bölebilir ve gruplara da belli başlı yetkiler verebiliriz.
+
+**Peki Linux'ta grup sisteminin faydaları nelerdir?**
+
+Bunlardan en önemlisi kullanıcı yönetiminde oldukça fayda sağlaması. Grup üyeliği sistemi sayesinde yalnızca izin verilen dosya, dizin vs. erişim hakkı sağlamaktadır.
+
+**Kısaca Grup sistemi bir çeşit yönetim ve kontrol mekanizmasıdır.**
+
+Bir grup oluşturduğumuzda grubun bilgisi çokça duyduğumuz **`etc/group` dosyası içerisine eklenmekte ve kaydı tutulmaktadır.
+
+Yani sistem üzerinde mevcut grupları görmek istersek doğal olarak **group** dosyasına bakmalıyız.
+
+Hadi birlikte **group** dosyasına girerek hangi gruplarımızın olduğunu ve bu gruba ait hangi kullanıcıların olduğunu görelim.
+
+![](img/useradd4.png)
+
+Dosya içerisine girerseniz çok fazla grup olduğu ve bunların **kafa karıştırıcı geldiğini** düşünebilirsiniz ancak **sistem çok basit.**
+
+Örnek birkaç tane grup seçelim ve bu karmaşık kelime ve harflerin **hangi mantıkla** verildiğini görelim.
+
+![](img/useradd5.png)
+
+Örneğin **sudo grubunu** ele alalım. 
+
+**sudo: x :27:serdar,kullanici2**
+
+Resimde belirtmiş olduğum numaraların açıklaması şöyledir;
+
+**1.Grup ismi:** Gruba verilen isimdir. Yani grubumuzun ismi **sudo**
+
+**2-Parola:** Grubun parolasıdır. Eğer grubun parolası yoksa **x** işareti ile gösterilir. Genel olarak gruplarda parola kısmı boştur ancak ayrıcalı gruplarda uygulanmaktadır.
+
+**3-Grup Kimliği:** Gruba atanan kimlik numarasıdır.
+
+**4-Grup Listesi:** Grupta yer alan kullanıcıları göstermektedir. "serdar" ve "kullanici2" **sudo grubunda** yer alıyor.
+
+Ayrıca sudo grubuna kayıtlı kullanıcılar **sudo** komutunu parolası ile birlikte kullanabilmektedir.
+
+Şimdi önceki konuda da bahsettiğimiz **`id <kullaniciAdi>`** komutu olan **kullanıcı gruplarını sorgulama** kısmına gelelim.
+
+#### Yeni Grup oluşturma
+
+Şimdi ise yeni bir grup oluşturup, **group** dosyası içerisinde ki kaydını görelim.
+
+Sistemde yeni bir grup oluşturmak için;
+
+```
+groupadd <grupAdi>
+```
+
+komutunu kullanırız. Şimdi yeni bir grup oluşturalım.
+
+![](img/useradd6.png)
+
+Grubumuzu oluşturduk. Peki grubumuz gerçekten oluşturulup **group dosyasına** kaydı yapıldı mı? Birlikte bakalım.
+
+**group** dosyasından inceleyeceğimiz için küçük bir sorgu ile grubumuzun kaydını görebiliriz.
+
+![](img/useradd7.png)
+
+Evet grubumuz **group** dosyası içerisinde bulunuyor. Bir şifresi yok ve kimlik numarası 1006. İçerisinde ise herhangi bir üye yok.
+
+Eğer gruba kendiniz bir kimlik numarası vermek isterseniz; **-g** parametresini kullanabilirsiniz;
+
+```
+groupadd -g 7890 <grupAdi>
+```
+
+gibi. Eğer aynı id ye sahip başka bir grup varsa hata verecek ve grubunuz oluşmayacaktır. Yani numarayı verirken herhangi bir tereddüt yaşamanıza gerek yok.
+
+#### Gruba Yeni Kullanıcı Ekleme
+
+Gruba yeni bir kullanıcı eklemek için;
+
+```
+gpasswd -a <kullaniciAdi> <grupAdi> 
+```
+
+komutunu kullanabiliriz.  Şimdi yeni oluşturmuş olduğumuz gruba kullanıcımızı ekleyelim.
+
+![](img/useradd8.png)
+
+Grubumuza "serdar" kullanıcısını ekledik ve kontrolünü gerçekleştirdik. Artık oluşturmuş olduğumuz grubun yeni bir üyesi var :)
+
+#### Kullanıcı Gruplarını Sorgulama
+
+Grup sistemini ve gruba yeni kullanıcı eklemeyi öğrenmiş olduk. Şimdi sistemde kayıtlı olan kullanıcıların hangi grupların üyesi olduğunu görelim.
+
+Kullanıcının numarası ve hangi grupların aile ferdi olduğunu öğrenebilmek için;
+
+```
+id <kullaniciAdi>
+```
+
+komutunu kullanıyoruz. Şimdi "serdar" kullanıcımız hangi gruplara üyeymiş görelim.
+
+![](img/useradd9.png)
+
+Evet "serdar" kullanıcımız birçok gruba üye olduğunu görüyoruz. Öncelikle her grubumuzun bir **kimlik numarası** olduğunu biliyorduk. Ayrıca kullanıcıların da kendine ait bir **kimlik numarası** vardır. Bunu bir **TC kimlik numarası** gibi düşünebiliriz.
+
+En başta gördüğümüz **`uid`** ve **`gid`** ne olduğunu açıklayalım.
+
+**`uid`** --> **USER ID**  anlamına gelir. Yani kullanıcı numarası.
+
+**`gid`**--> **GROUP ID** anlamına gelir. Yani grup numarası.
+
+Mesela **`24 id li cdrom grubu`**   , **`27 id li sudo grubu`** gibi.
+
+**"serdar"** kullanıcımızın **kullanıcı numarası(UID)=1000** miş.
+
+**Peki kullanıcı numaraları yani UID neye göre verilmektedir??**
+
+ID numaraları üçe ayrılır;
+
+**Root Kullanıcısı:** ID(Kimlik numarası) **0** dır.
+
+**Sistem Kullanıcısı:** ID(Kimlik numarası) **1-499** arası olur.
+
+**Normal Kullanıcı:** ID(Kimlik numarası) 500-N olarak gider.
+
+Böylece Kullanıcının **ne kullanıcısı** olduğunu anlayabiliriz.
+
+#### Kullanıcıyı Gruptan Çıkarmak
+
+Eğer grup üyesi olan bir kullanıcıyı gruptan çıkarmak istersek **`gpasswd`** komutunun **`-d`** parametresini kullanırız.
+
+Şimdi **serdar** kullanıcısını  eklemiş olduğumuz **yeniGrup** adlı gruptan çıkaralım.
+
+```
+sudo gspasswd -d <kullaniciAdi> <GrupAdi>
+```
+
+![](img/useradd10.png)
+
+Böylece grubumuzdan **serdar** kullanıcısını çıkarmış olduk.
+
+
+
+
+
 # **LINUX CONFIGURATION**
 ![](img/Aspose.Words.b6e0df8a-337a-49f3-bb0c-f932a633c435.006.png)
 
 **İfconfig** komutu ile ipv4,ipv6,mac adresi öğrenilebilir.
-1. # **Netplan kullanarak Static IP Yapılandırma**
+## **1-Netplan kullanarak Static IP Yapılandırma**
 
 Ip yapılandırma işlemi için netplan dosyasına erişmeliyiz. Bu dosya `/etc/netplan/` dizininin içerisinde bulunmaktadır.
 
-Bu dosya Ubuntu 18.04.01 versiyonundan önce `etc/network/interfaces/` dizininin içerisinde bulunmaktaydı. Ancak yeni versiyonuyla beraber sistem değişikliğine gidildi.
+Bu dosya Ubuntu 17.10 versiyonundan önce `etc/network/interfaces/` dizininin içerisinde bulunmaktaydı. Ancak yeni versiyonuyla beraber sistem değişikliğine gidildi.
 
 Öncelikle ethernet cihaz adına bakalım;
 
@@ -554,7 +904,7 @@ Kullandığınız metin editörü ile dosyayı açalım.  (nano ile açabilirsin
 
 Static istedğimiz için **`dhcp4: no`** -> hayır olarak işaretliyoruz
 
-**Addresses** kısmına istediğimiz ip adresini atıyoruz. **/24** olan kısım ise ağ maskemiz. **255.255.255.0 olarak atama** işlemi yapacaktır.
+**Addresses** kısmına istediğimiz ip adresini atıyoruz. **/24** olan kısım ise ağ maskemiz.  255=8bit toplam 24 bit edecektir. **255.255.255.0 olarak atama** işlemi yapacaktır.
 
 **gateway4:** ağ geçitimizin IP adresini atıyoruz.
 
@@ -572,6 +922,17 @@ Eğer herhangi bir sorun yoksa yapılandırma dosyasının kabul edildiğine dai
 
 Ardından **yapılandırmayı uygulamak** için **`sudo netplan apply`** komutunu çalıştıralım. Böylece yapmış olduğumuz ayarlar tamamlanacaktır.
 
+Ağ hizmetini yeniden başlatmak, durdurmak veya başlatmak için;
+
+```
+sudo service network-manager restart
+sudo service network-manager stop
+sudo service network-manager start
+```
+
+kullanılabilir.
+
+# 
 
 
 

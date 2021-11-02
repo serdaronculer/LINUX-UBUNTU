@@ -1,4 +1,4 @@
-﻿﻿# **LINUX NEDİR**
+﻿﻿﻿# **LINUX NEDİR**
 Linux bilinenin aksine bir işletim sistemi değil, **işletim sistemi çekirdeğidir.** 
 
 **Linux dağıtımları** ise Linux çekirdeğinin üzerine eklenen yazılım ve araçlara denir. Yani Linux dağıtımları Linux çekirdeğini işletim sistemi haline getirir.
@@ -138,7 +138,7 @@ Yani **boot** klasöründen örnek verecek olursak;
 
 
 # **LINUX DOSYA VE DIZIN IZINLERI**
-# **1-Dosya ve Dizin yetkilendirmesi yapmak**
+## **1-(chmod)Dosya ve Dizin yetkilendirmesi yapmak**
 
 Linux’ta ki her şey dosya olduğu için dosya sistem güvenliği çok önemlidir. Her dosyaya verilen erişim izni sayesinde sistem yönetimi oldukça kolaydır. Sistem üzerinde ki kullanıcıların erişim hakları belirli izinlere göre yönetilir. Bunlar;
 
@@ -210,7 +210,7 @@ Chmod da sayısal ifadelerle de yetkilendirme yapabiliriz.
 - **1** – çalıştırma yetkisi
 - **0** – yetki kaldırma
 
-**Chmod [dosyaSahibi][Grubu][DiğeKullanıcılar] <dosyaAdi>**
+**Chmod [dosyaSahibi] [Grubu] [DiğeKullanıcılar] <dosyaAdi.>**
 
 İlk rakam dosya sahibine aittir, ikinci rakam grubuna, üçüncü rakam diğer kullanıcılara aittir.
 
@@ -225,14 +225,87 @@ Diğer kullanıcılara da yalnızca okuma yetkisi verelim **4** vereceğiz
 O halde **`chmod 764 <dosyaAdi>`** olacaktır.
 
 #
-# **2-Dosya ve Dizin sahibini değiştirmek**
+
+## **2-(chown)Dosya ve Dizin sahibini değiştirmek**
 **chown** komutu ile dosya veya dizin sahibini değiştirebiliriz.
 
 **`chown <Kullanici> <dosyaAdi>`**
- # **3-Dosya ve Dizin grubunu değiştirmek**
+ ## **3-(chgrp)Dosya ve Dizin grubunu değiştirmek**
 chgp komutu ile dosya veya dizin grubunu değiştirebiliriz.
 
 **`chgrp <grup> <dosyaAdi>`**
+
+Örnek olarak dosyamızın grubunu değiştirelim. Önce dosyamızın hangi guruba ve usera ait olduğuna bakalım;
+
+
+
+![](img/useraddr17.png)
+
+dosyanın **useri root**,     **grubu yeniGrup** olarak görünüyor. Şimdi grubumuzu **testGrup** yapalım;
+
+![](img/useradd18.png)
+
+```
+chgrp testGrup 01-network-manager-all.yaml
+```
+
+Yazdığımız komut ile artık grubumuz **testGrup** adlı gruba geçti.
+
+## **(chattr) Dosya Kilitlemek**
+
+Bu komut bir dosyanın değiştirilme, **silinme** vb. gibi durumların yaşanmasını engellemektedir. Öyle bir komuttur ki **root** kullanıcısı bile dosya üzerinde bir değişiklik veya silme işlemi yapamaz. Hatta daha ileri gidersek **sistemin kendisi bile** dosya üzerinde bir değişiklik veya silme işlemi yapamaz.
+
+Komutumuzun kullanımı **`chattr +i dosyaAdi`** şeklindedir. 
+
+Bu tür kilitli dosyaları listelemek için **`lsattr`** komutunu kullanmaktayız. Şimdi öncelikle;
+
+```
+lsattr
+```
+
+komutunu kullanarak dosyalarımızı listeleyelim.
+
+![](img/useradd19.png)
+
+Dosyalarımız bu şekilde görünmektedir. Şimdi ise **test.txt** dosyamızı kilitleyelim
+
+Bunun için ;
+
+```
+chattr +i test.txt
+```
+
+komutumuzu kullanalım.
+
+![](img/useradd20.png)
+
+
+
+ Şimdi tekrar  **`lsattr`** komutumuz ile dosyalarımızı listeleyelim. Bakalım istediğimiz şekilde **test.txt** dosyamız kilitlenmiş mi?
+
+
+
+![](D:\LINUX-UBUNTU\img\useradd21.png)
+
+Dosyamız sistem tarafından kilitlenmiş görünüyor. Şimdi **root olarak silmeyi deneyelim**
+
+![](D:\LINUX-UBUNTU\img\useradd22.png)
+
+**root** kullanıcı ile silmek istesek bile izin vermedi. 
+
+Şimdi **dosyamızın kilidini kaldıralım**
+
+Bunun için **`chattr -i dosyaAdi`** komutunu kullanırız.
+
+```
+chattr -i test.txt
+```
+
+![](D:\LINUX-UBUNTU\img\useradd23.png)
+
+Böylece dosyamızın kilidini kaldırmış olduk.
+
+
 
 
 # **LINUX DOSYA VE DIZIN KOMUTLARI**
@@ -320,7 +393,7 @@ Dosya ile ilgili detaylı bilgi almak için kullanılır.
 
 
 # **LINUX ARAMA KOMUTLARI**
-# **1-grep**
+## **1-grep**
 Dosya içerisinde harf veya kelimeyi arar. Dosya içerisinde arama yapar.
 **`grep <aranacakKelime> <dosyaAdi>`**
 
@@ -339,7 +412,7 @@ Dosya içerisinde harf veya kelimeyi arar. Dosya içerisinde arama yapar.
 
 **`grep -ir ‘Ka’ dosya1`**
 
-# **2-find**
+## **2-find**
 Geniş bir kullanımı olan arama komutudur.
 
 -name ve -type opsiyonu genel olarak kullanılır
@@ -375,7 +448,7 @@ Boyuta göre KB cinsinden arama yapması için;
 **Sunucuda tüm .log dosyaları bulmak istersek, \* işaretini kullanırız**
 
 **`find / -name “\*.log”`**
-# **3- Locate**
+## **3- Locate**
 Locate komutu find komutu gibi dosya adı ile arama yapmamızı sağlar ancak find komutundan çok daha hızlıdır. Çünkü find taramaları gerçek zamanlı yaparken **locate dosyayı daha önce katoglanmış veritabanından tarar.**
 
 Locate komutu **var/lib/mlocate/mlocate.db** isimli veritabanını kullanmaktadır.
@@ -401,19 +474,23 @@ Böylece mlocate paketini kurmuş olacağız. Ardından updatedb komutunu kullan
 Eğer küçük-büyük harf duyarlılığını istemiyorsak **-i** parametresini kullanabiliriz.
 
 **`locate -i DOSYaADi`**
-# **4-whereis ve which**
+## **4-whereis ve which**
 
 # **LINUX SIKIŞTIRMA IŞLEMLERI**
 
 Linux dağıtımlarında arşivleme veya yedekleme işlemleri için gzip, bzip2, lzma vb. yöntemler ve komutları mevcuttur.
 
-Arşivleme ve sıkıştırma işlemleri **tar** komutu ile çeşitli parametreler verilerek yapılır.
+## tar
+
+
+
+Arşivleme ve dosyaları bir formatta tutmak için **tar** komutunu kullanırız.  işlemler **tar** komutuna çeşitli parametreler verilerek yapılır.
 
 Komutun alabileceği parametrelerden bazıları;
 
 **c** - arşiv oluşturmak için,
 
-**f** - dosyaya yazdırmak için,(gerekli)
+**f** - dosyaya yazdırmak için,(gerekli parametre) (hangi dosyaya yazılıacağı)
 
 **t** - arşivdeki dosyaları listelemek için,
 
@@ -444,10 +521,152 @@ Komutun alabileceği parametrelerden bazıları;
 **Sadece belirli dosya uzantısına ait dosyaları arşivden çıkarmak istersek –wildcards kullanılabilir.**
 
 **`tar  -xf  dosyalar.tar –wildcards   ‘\*.jpg’`**
-#
+
+## gzip-bzip2
+
+**tar** komutu ile dosyalarımızı arşivledik. Şimdi ise **dosya sıkıştırma işlemlerini yapalım**
+
+Sıkıştırma işlemi için iki temel aracımız var. Bunlar **`gzip`** ve **`bzip2`** dir.
+
+Öncelikle birkaç normal dosyayı **sıkıştıralım**
+
+```
+gzip dosyaAdi
+```
+
+```
+bzip2 dosyaAdi
+```
+
+
+
+![](img/useradd24.png)
+
+
+
+**`gizp dosya1`** komutu ile dosya1'i `gzip` yöntemiyle sıkıştırdık.
+
+**`bzip2 dosya2`** komutu ile dosya1'i `bzip2` yöntemiyle sıkıştırdık.
+
+Peki sıkıştırmış olduğumuz dosyaları geri nasıl çıkartabiliriz?
+
+Çok basit yalnızca komuta **`-d`** parametresini koymamız yeterli olacaktır. Ancak küçük bir fark var. **`bzip2`** dosyasını çıkarmak için dosyanın uzantısını yazmalıyız. Yani ==> **`bzip2 -d dosya2.bz2`** gibi.
+
+Bu gzip için geçerli değildir. Ancak yine de önerim dosya uzantısını da eklemeniz.
+
+Yani sıkıştırmış olduğumuz dosyaları geri çıkarmak için;
+
+```
+gzip -d dosya1.gz
+```
+
+```
+bzip2 -d dosya2.bz2
+```
+
+Deneyelim;
+
+![](img/useradd25.png)
+
+Şimdi **ÖNEMLİ OLAN KISIMA GELDİK** **`tar`** komutu ile `gzip` ve `bzip2` sıkıştırma işlemini yapacağız. Yani;
+
+**TAR ARŞİV DOSYASINI GZİP VEYA BZİP2 İLE SIKIŞTIRACAĞIZ** . Bunu konu başlığı olarak açıklamak isterim.
+
+## tar Arşiv Dosyasını gzip Veya bzip2 Ile Arşivlemek
+
+Bu işlem için İki farklı yolumuz mevcuttur.
+
+Öncelikle basite indirgenmiş ancak dolaylı yolu göstermek isterim. 
+
+### Dolaylı Yoldan Arşiv(tar) Dosyasını Sıkıştırmak
+
+1- Öncelikle dosyalarımızı **tar** komutu kullanarak arşivleyelim.
+
+```
+tar -cf dosyalar.tar dosya1 dosya2 dosya3
+```
+
+![](img/useradd26.png)
+
+Dosyalarımızı artık **`dosyalar.tar`** arşivine attık.
+
+Şimdi bu arşiv dosyamızı `gzip` veya `bzip2` ile sıkıştırabiliriz.
+
+
+
+2-Arşiv dosyasınız **gzip** veya **bzip2** ile sıkıştıralım ve daha sonra tekrar çıkaralım
+
+```
+gzip dosyalar.tar
+```
+
+```
+gzip -d dosyalar.tar.gz
+```
+
+![](img/useradd27.png)
+
+Bu şekilde **tar** dosyamızı sıkıştırıp daha sonra tekrar çıkarttık.
+
+### tar Komutuyla Dosyaları Arşivleyip Sıkıştırmak
+
+`gzip` ve `bzip2` araçlarını **tar** komutu yardımıyla arşivleme işlemi yapacağız. Ancak bu işlemi yaparken küçük farklılıklar var.
+
+Bu fark şöyledir
+
+`gzip` ile **tar** komutuyla arşivleme ve sıkıştırma yaparken;
+
+```
+tar -czf dosyalar.tar.gz dosyaAdi
+```
+
+`bzip2` ile **tar** komutuyla arşivleme ve sıkıştırma yaparken;
+
+```
+bzip2 -cjf dosyalar.tar.bz2 dosyaAdi
+```
+
+parametrelerini kullanmaktayız. Şimdi birlikte bu örneği **gzip** için uygulayalım.
+
+![](img/useradd28.png)
+
+Böylelikle **tar** komutu ile **gzip** işlemini yapmış olduk.
+
+
+
+Şimdi de bu örneği **bzip2** için uygulayalım.
+
+![](img/useradd29.png)
+
+Böylelikle **tar** komutu ile **bzip2** işlemini yapmış olduk.
+
+Eğer dosyalarımızı sıkıştırmış olduğumuz `gzip` ve `bzip2` den çıkartmak istersek, `-c` parametresi yerine `-x` parametresini kullanıyoruz.  İsterseniz çıkartma işlemi yaparken bu dosyaları aynı zamanda farklı bir dizine gönderelim. Yani;
+
+ 
+
+```
+tar -xzf dosyalar.tar.gz -C dosyalarim/
+```
+
+![](img/useradd30.png)
+
+
+
+```
+tar -xjf dosyalar.tar.bz2 -C dosyalarim/
+```
+
+
+
+![](img/useradd31.png)
+
+
+
+Böylece **tar** komutuyla sıkıştırmış olduğumuz arşivimizin içerisinde ki dosya1 ve dosya2 yi dosyalarim/ dizini içerisine çıkarmış olduk.
+
 # **LINUX METIN DUZENLEYICILER**
 
-# **1-nano metin editörü**
+## **1-nano metin editörü**
 Nano metin düzenleyicisi sistemde yüklü olmayabilir. Yüklü olup olmadığını
 
 **`nano –version`** komutu ile öğrenebiliriz. 
@@ -461,7 +680,7 @@ Nano ile bir dosya açmak için ;
 **`nano <dosyaAdi>`** komutunu kullanmalıyız. Açılacak dosya ile aynı dizinde olmamız gerekmektedir.
 
 Eğer dosya adı belirtmeden, yalnızca **nano** komutu kullanılırsa dosyayı yazdıktan sonra istediğimiz dosya adını verip ait olduğumuz dizinde oluşturabiliriz.
-# **2-vi metin editörü**
+## **2-vi metin editörü**
 Nanoya göre daha güçlü bir editördür ancak kullanımı daha zordur. Örneğin bir sistem çöktüğü zaman dosyaları nano ile açmak pek mümkün olmayabilir. **Kernel seviyesinde** işimize yarayacak sadece **vi** metin editörüdür. Sebebi ise **linux vi editör ile yazılmıştır**.
 
 Vi editörü çalışma esnasında üç ayrı mod ile gelir. 
@@ -692,7 +911,7 @@ Evet yazdığımız komut sayesinde **kullanici2** yi kilitledik ve artık siste
 
 
 
-## KULLANICILAR ARASI KIMLIK DEGISIMI
+## Kullanicilar Arasi Kimlik Degisimi
 
 Sisteme yeni kullanıcı ekleme ve birden çok kullanıcının sistemde olabileceğini biliyoruz. Peki **kullanıcılar arası değişim** nasıl yapabiliriz?
 
@@ -728,7 +947,7 @@ Yani **`su -serdar`** komutunu kullandığımızda geçiş yaptığımız **hesa
 
 
 
-## GRUP YÖNETİMİ
+## Grup Yönetimi Nedir Ve Faydaları
 
 Linux'ta birçok kullanıcı hesabının var olduğu ve bu kullanıcılar arasında en yetkili kullanıcının **root** kullanıcısı olduğunu biliyoruz.
 
@@ -774,7 +993,7 @@ Ayrıca sudo grubuna kayıtlı kullanıcılar **sudo** komutunu parolası ile bi
 
 Şimdi önceki konuda da bahsettiğimiz **`id <kullaniciAdi>`** komutu olan **kullanıcı gruplarını sorgulama** kısmına gelelim.
 
-#### Yeni Grup oluşturma
+## Yeni Grup oluşturma
 
 Şimdi ise yeni bir grup oluşturup, **group** dosyası içerisinde ki kaydını görelim.
 
@@ -804,7 +1023,7 @@ groupadd -g 7890 <grupAdi>
 
 gibi. Eğer aynı id ye sahip başka bir grup varsa hata verecek ve grubunuz oluşmayacaktır. Yani numarayı verirken herhangi bir tereddüt yaşamanıza gerek yok.
 
-#### Gruba Yeni Kullanıcı Ekleme
+## Gruba Yeni Kullanıcı Ekleme
 
 Gruba yeni bir kullanıcı eklemek için;
 
@@ -818,7 +1037,7 @@ komutunu kullanabiliriz.  Şimdi yeni oluşturmuş olduğumuz gruba kullanıcım
 
 Grubumuza "serdar" kullanıcısını ekledik ve kontrolünü gerçekleştirdik. Artık oluşturmuş olduğumuz grubun yeni bir üyesi var :)
 
-#### Kullanıcı Gruplarını Sorgulama
+## Kullanıcı Gruplarını Sorgulama
 
 Grup sistemini ve gruba yeni kullanıcı eklemeyi öğrenmiş olduk. Şimdi sistemde kayıtlı olan kullanıcıların hangi grupların üyesi olduğunu görelim.
 
@@ -856,7 +1075,7 @@ ID numaraları üçe ayrılır;
 
 Böylece Kullanıcının **ne kullanıcısı** olduğunu anlayabiliriz.
 
-#### Kullanıcıyı Gruptan Çıkarmak
+## Kullanıcıyı Gruptan Çıkarmak
 
 Eğer grup üyesi olan bir kullanıcıyı gruptan çıkarmak istersek **`gpasswd`** komutunun **`-d`** parametresini kullanırız.
 

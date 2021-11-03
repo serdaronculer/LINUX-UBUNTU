@@ -1,4 +1,5 @@
-﻿﻿﻿# **LINUX NEDİR**
+﻿﻿﻿﻿﻿# **LINUX NEDİR**
+
 Linux bilinenin aksine bir işletim sistemi değil, **işletim sistemi çekirdeğidir.** 
 
 **Linux dağıtımları** ise Linux çekirdeğinin üzerine eklenen yazılım ve araçlara denir. Yani Linux dağıtımları Linux çekirdeğini işletim sistemi haline getirir.
@@ -137,7 +138,7 @@ Yani **boot** klasöründen örnek verecek olursak;
 
 
 
-# **LINUX DOSYA VE DIZIN IZINLERI**
+# **LINUX DOSYA VE DİZİN İZİNLERI**
 ## **1-(chmod)Dosya ve Dizin yetkilendirmesi yapmak**
 
 Linux’ta ki her şey dosya olduğu için dosya sistem güvenliği çok önemlidir. Her dosyaya verilen erişim izni sayesinde sistem yönetimi oldukça kolaydır. Sistem üzerinde ki kullanıcıların erişim hakları belirli izinlere göre yönetilir. Bunlar;
@@ -195,11 +196,23 @@ chmod komutunun aldığı parametrede ki anlamsal ifadeler;
 - **w** - yazma yetkisi(write)
 - **x** - çalıştırma yetkisi(execute)
 
-**`chmod o+w <dosyaAdi>`** Diğer kullanıcılara yazma yetkisi verir.
+```
+chmod o+w <dosyaAdi>            Diğer kullanıcılara yazma yetkisi verir.
+```
 
-**`chmod ug+rwx <dosyaAdi>`** Dosya sahibi ve grubuna okuma,yazma ve çalıştırma yetkisi verir.
+```
+chmod ug+rwx <dosyaAdi>         Dosya sahibi ve grubuna okuma,yazma ve çalıştırma yetkisi verir.
+```
 
-**`chmod o-w <dosyaAdi>`** Diğer kullanıcıların yazma yetkisini kaldırır
+```
+chmod o-w <dosyaAdi>            Diğer kullanıcıların yazma yetkisini kaldırır
+```
+
+```
+chmod *+w <dosyaAdi>            Tüm kullanıcılara yazma yetkisi verir
+```
+
+
 
 2. **Kullanımı**
 
@@ -308,88 +321,218 @@ Böylece dosyamızın kilidini kaldırmış olduk.
 
 
 
-# **LINUX DOSYA VE DIZIN KOMUTLARI**
+# **LINUX DOSYA VE DİZİN KOMUTLARI**
 # **1-touch**
 Genel olarak dosya oluşturmak için kullanılır. Ancak komutun ana işlevi mevcut dosyaların tarih bilgisini değiştirmektir.
 
 Parametre olarak verilen dosya mevcut değilse oluşturulur. Kullanımı;
 
-**`touch <dosyaAdi>`**
+```
+touch <dosyaAdi>
+touch dosya1
+```
 
-**`touch dosya1`**
+
+
+```
+touch -t YYYYAAGGSSDD.SS <dosyaAdi>
+```
+
+komutu ile dosya tarihini değiştirebiliriz.
+
+
 
 # **2-mkdir**
 Klasör oluşturmak için kullanılır. Yeni bir dizin oluşturulabilir.
 
-**`mkdir <dosyaAdi>`**
+```
+mkdir <dosyaAdi>
+mkdir klasor1
+```
 
-**`Mkdir klasor1`**
+
 # **3-mv**
 Dosya ve dizin taşımak veya yeniden adlandırmak için kullanılır.
 
-**`mv <kaynak> <hedef>`**
+```
+mv <kaynak> <hedef>
+mv dosya1  serdar/Desktop/
+```
 
-**`mv dosya1  serdar/Desktop/`**
+Dosya  veya dizin taşır.
 
-**`mv <eski\_isim> <yeni\_isim>`**
 
-**`mv dosya1  dosya1Yeni`**
+
+```
+mv <eski\_isim> <yeni\_isim>
+mv dosya1  dosya1Yeni
+```
+
+Dosya veya dizin adını değiştirir.
+
+
 
 # **4-cp**
+```
+cp <kaynak> <hedef>
+cp dosya1 serdar/Desktop/
+```
+
 Dosya kopyalamak için kullanılır.
+
+
+
+```
+cp -r dizin1/   home/serdar/
+```
 
 Dizin kopyalamak için **–r** parametresi almalıdır.
 
-**`cp <kaynak> <hedef>`**
 
-**`cp dosya1   serdar/Desktop/`**
-
-**`cp -r dizin1/   home/serdar/`**
 
 # **5-rm**
+```
+rm <dosyaAdi>
+```
+
 Dosya silmek için kullanılır.
+
+
+
+```
+rm -f <dosyaAdi>
+```
 
 Dosyayı silmeye zorlamak için **–f** parametresi kullanılır
 
+
+
+```
+rm -r <dizinAdi>
+```
+
 Dizin silmek için **–r** parametresi almalıdır.
 
-**`rm <dosyaAdi>`**
 
-**`rm -r <dizinAdi>`**
+
 # **6-cat**
 Dosya içeriğini okumak için kullanılır. Ayrıca  dosya içerisine yazmak içinde kullanılabilir.
 
-**`cat <dosyaAdi>`**          dosyayı okur.
 
-**`cat -n <dosyaAdi>`**  -n parametresi ile dosya içine yazılabilir. Yazdıktan sonra çıkmak için **ctrl+c**
+
+```
+cat <dosyaAdi>  
+```
+
+  dosyayı okur.
+
+
+
+```
+cat -n <dosyaAdi>
+```
+
+-n parametresi ile dosya içine yazılabilir. Yazdıktan sonra çıkmak için **ctrl+c**
+
+
+
+```
+cat > <dosyaAd>
+```
+
+ komutu ile eğer dosya varsa içerisine veri yazabiliriz. Sonrasında **ctrl+d** tuşu ile çıkarız. Ancak **dosyamızda daha önce veri varsa o veriyi silip yeni veriyi ekleyecektir** . Eğer dosya yoksa yeni dosya oluşturup bu işlemi gerçekleştirecektir.
+
+
+
+```
+cat >> <dosyaAdi>
+```
+
+komutunu kullanırsak dosyanın içerisinde ki eski veriyi silmez yalnızca yazdıklarımızı dosyaya ekler.
+
+
+
 # **7-head**
 Dosya içeriğini dosya başından itibaren okumak için kullanılır. Varsayılan olarak ilk 10 satırı okur. Satır sayısı belirtmek için -n parametresi kullanılır
 
-**`head <dosyaAdi>` , `head -n20 <dosyaAdi>`**
+```
+head <dosyaAdi>
+head -n20 <dosyaAdi>
+```
+
+
+
 # **8- tail**
 Dosya içeriğini sonundan itibaren okumak için kullanılır. Varsayılan olarak ilk 10 satırı okur. Satır sayısı belirtmek için -n parametresi kullanılır
 
-**`tail <dosyaAdi>` , `tail -n15 <dosyaAdi>`**
+```
+tail <dosyaAdi>`
+tail -n15 <dosyaAdi>
+```
+
+
+
 # **9-more**
 Dosya içeriğini parça parça okumak için kullanılır. Sayfaları ilerlemek için **space**, komuttan çıkmak için **q** tuşu kullanılır
 
-**`more <dosyaAdi>`**
+```
+more <dosyaAdi>
+```
+
+
+
 # **10-less**
 Dosya içeriğini **more** komutundan daha fazla seçenekle parça parça okumak için kullanılır. Yukarı aşşağı tuşu ile sıralı okunabilir.
 
-**`less <dosyaAdi>`**
+```
+less <dosyaAdi>
+```
+
+
+
 # **11-nl**
 Dosya içeriğini satır numarası ekleyerek okuma yapar.
-**`nl <dosyaAdi>`**
+
+```
+nl <dosyaAdi>
+```
+
+
+
 # **12-pr**
 Dosya içeriğini sayfalayarak okumak için kullanılır.
-**`pr <dosyaAdi>`**
+
+```
+pr <dosyaAdi>
+```
+
+
 # **13-file**
 Dosya ile ilgili bilgi almak için kullanılır.
-**`file <dosyaAdi>`**
+
+```
+file <dosyaAdi>
+```
+
+
 # **14-stat**
 Dosya ile ilgili detaylı bilgi almak için kullanılır.
-**`stat <dosyaAdi>`**
+
+```
+stat <dosyaAdi>
+```
+
+
+
+## 15-shred
+
+Bu komut ile Dosya içerisine rastgele bitler yazmakta ve dosyanın okunmaz hale gelmesini sağlamaktadır. Kullanımı;
+
+```
+shred <dosyaAdi>
+```
+
+Ayrıca
 
 
 # **LINUX ARAMA KOMUTLARI**
@@ -476,11 +619,11 @@ Eğer küçük-büyük harf duyarlılığını istemiyorsak **-i** parametresini
 **`locate -i DOSYaADi`**
 ## **4-whereis ve which**
 
-# **LINUX SIKIŞTIRMA IŞLEMLERI**
+# **LINUX SIKIŞTIRMA İŞLEMLERİ**
 
 Linux dağıtımlarında arşivleme veya yedekleme işlemleri için gzip, bzip2, lzma vb. yöntemler ve komutları mevcuttur.
 
-## tar
+## 1-tar
 
 
 
@@ -522,7 +665,7 @@ Komutun alabileceği parametrelerden bazıları;
 
 **`tar  -xf  dosyalar.tar –wildcards   ‘\*.jpg’`**
 
-## gzip-bzip2
+## 2-gzip-bzip2
 
 **tar** komutu ile dosyalarımızı arşivledik. Şimdi ise **dosya sıkıştırma işlemlerini yapalım**
 
@@ -572,7 +715,7 @@ Deneyelim;
 
 **TAR ARŞİV DOSYASINI GZİP VEYA BZİP2 İLE SIKIŞTIRACAĞIZ** . Bunu konu başlığı olarak açıklamak isterim.
 
-## tar Arşiv Dosyasını gzip Veya bzip2 Ile Arşivlemek
+## 3-tar Arşiv Dosyasını gzip Veya bzip2 Ile Arşivlemek
 
 Bu işlem için İki farklı yolumuz mevcuttur.
 
@@ -664,7 +807,96 @@ tar -xjf dosyalar.tar.bz2 -C dosyalarim/
 
 Böylece **tar** komutuyla sıkıştırmış olduğumuz arşivimizin içerisinde ki dosya1 ve dosya2 yi dosyalarim/ dizini içerisine çıkarmış olduk.
 
-# **LINUX METIN DUZENLEYICILER**
+## 4-zcat-zgrep-bzcat-bzgrep
+
+Bildiğimiz gibi `cat` komutu ile okuma `grep` komutu ile arama yapıyoruz. Şimdi göreceğimiz komutlar ise adından da anlaşıldığı üzere **sıkıştırılmış dosyalar için aynı görevi üstlenmektedir.**
+
+
+
+Durumu daha iyi anlayabilmek adına **sıkıştırılmış dosyamızı** öncelikle `cat` ile okumaya, daha sonra `zcat` ile okuyalım.
+
+Sıkıştırılmış dosyayı `cat` komutu ile okumaya çalışıyoruz;
+
+
+
+![](img/1.png)
+
+
+
+Okuyamadığımız anlamsız kelimeler görüyoruz. Şimdi ise bu işlemi  gzip için`zcat` ile yapalım
+
+```
+zcat dosya.gz
+```
+
+![](img/2.png)
+
+Dosyamızın içeriğini gayet doğru bir şekilde okuyabiliyoruz.
+
+`bzip` dosyası içinse `bzcat` komutu kullanırız.
+
+```
+bzcat dosya2.bz2
+```
+
+<img src="img/3.png" style="zoom:110%;" />
+
+**zgrep ve bzgrep** içinde aynı şeyler geçerlidir;
+
+```
+bzgrep metin dosya2.bz2
+zgrep test dosya1.gz
+```
+
+![](img/4.png)
+
+## 5-zip-unzip
+
+`.zip` uzantılı dosyalar **oluşturmayı** ve **açmayı** görelim. 
+
+`.zip` uzantılı dosya oluşturmak için;
+
+```
+zip <zipdosyaAdi.zip> <dosya>
+```
+
+komutunu kullanırız. Şimdi örnek olarak bir tane yapalım.
+
+```
+zip dosyam.zip belge.txt
+```
+
+![](img/5.png)
+
+Dosyamızı `.zip`formatı ile sıkıştırdık ve %74 oranında bir sıkıştırma işlemi sağlanmış.
+
+Şimdi  ise dosyamızı geri çıkaralım. Bunun için;
+
+```
+unzip <zipdosyaAdi.zip>
+```
+
+komutunu kullanırız. Şimdi örnek olarak dosyamızı `.zip`ten çıkaralım.
+
+<img src="img/6.png" style="zoom:150%;" />
+
+**NOT:** Eğer birden çok dosya ziplenmiş ve sadece 1 dosyayı zipten çıkarmak istiyorsak; `unzip <zipDosyasiAdi> <dosyaAdi>` olarak kullanılabilr.
+
+## 6-Gördüğümüz Sıkıştırma Araçlarının Sıkıştırma Oranları
+
+Bir dosya oluşturduk ve gördüğümüz tüm işlemleri bu dosyamıza uyguladık. Şimdi bakalım **hangi formatımız ne kadar sıkıştırma işlemi yapmış**
+
+![](img/7.png)
+
+Yeşil renk ile belirtilen alan dosya boyutudur. **BOYUTLAR BYTE CİNSİNDEN GÖSTERİLMEKTEDİR**
+
+En yüksek boyut `tar` olarak görünmektedir. Ancak bildiğimiz üzere `tar` bir çeşit arşivleme, dosyaları bir formata sokma ortamını sağlamaktadır.
+
+En düşük boyut ise `bz2` olarak görünüyor.
+
+
+
+# **LINUX METİN DÜZENLEYİCİLER**
 
 ## **1-nano metin editörü**
 Nano metin düzenleyicisi sistemde yüklü olmayabilir. Yüklü olup olmadığını
@@ -752,9 +984,9 @@ Bir metnin üst satırına yeni bir satır açıp yazı yazmak istersek;
 
 
 
-# LINUX KULLANICI  ISLEMLERI
+# LINUX KULLANICI  İŞLEMLERİ
 
-## Kullanıcı Ekleme
+## 1-Kullanıcı Ekleme
 
 Kullanıcı eklemenin 2 ayrı seçeneği ve komutu vardır;
 
@@ -825,7 +1057,7 @@ Böylece istediğimiz işlemi sağladık.
 
 
 
-## Kullanıcı Arama Ve Listeleme
+## 2-Kullanıcı Arama Ve Listeleme
 
 Eğer Linux kullanıcılarını listelemek istiyorsak ilk başvuracağımız yer **`/etc/passwd`** dosyası olacaktır.
 
@@ -841,7 +1073,7 @@ komutunu kullanmalıyız. Bize çıktı olarak ya böyle bir kullanıcı olmadı
 
 Kullanıcının ait olduğu gruba dair vereceği bilgiden önce **grup sistemi ne olduğu**, hakkında bilgi vermek isterim.  Daha sonrasında bu işlemi grup sistemi konusu içerisinde yapalım.
 
-## Kullanıcı Silme
+## 3-Kullanıcı Silme
 
 Bir kullanıcıyı  **`deluser`** komutunu kullanırız.
 
@@ -859,7 +1091,7 @@ Kullanıcının silindiğinden emin olmak için **`/home`** dizinine `ls` ile ba
 
 
 
-## Kullanıcı Hesabını Aktif-Pasif Hale Getirmek
+## 4-Kullanıcı Hesabını Aktif-Pasif Hale Getirmek
 
 
 
@@ -911,7 +1143,7 @@ Evet yazdığımız komut sayesinde **kullanici2** yi kilitledik ve artık siste
 
 
 
-## Kullanicilar Arasi Kimlik Degisimi
+## 5-Kullanicilar Arasi Kimlik Degisimi
 
 Sisteme yeni kullanıcı ekleme ve birden çok kullanıcının sistemde olabileceğini biliyoruz. Peki **kullanıcılar arası değişim** nasıl yapabiliriz?
 
@@ -943,11 +1175,11 @@ Yani **`su -serdar`** komutunu kullandığımızda geçiş yaptığımız **hesa
 
 #### 
 
-# LINUX GRUP ISLEMLERI
+# LINUX GRUP İŞLEMLERİ
 
 
 
-## Grup Yönetimi Nedir Ve Faydaları
+## 1-Grup Yönetimi Nedir Ve Faydaları
 
 Linux'ta birçok kullanıcı hesabının var olduğu ve bu kullanıcılar arasında en yetkili kullanıcının **root** kullanıcısı olduğunu biliyoruz.
 
@@ -993,7 +1225,7 @@ Ayrıca sudo grubuna kayıtlı kullanıcılar **sudo** komutunu parolası ile bi
 
 Şimdi önceki konuda da bahsettiğimiz **`id <kullaniciAdi>`** komutu olan **kullanıcı gruplarını sorgulama** kısmına gelelim.
 
-## Yeni Grup oluşturma
+## 2-Yeni Grup oluşturma
 
 Şimdi ise yeni bir grup oluşturup, **group** dosyası içerisinde ki kaydını görelim.
 
@@ -1023,7 +1255,7 @@ groupadd -g 7890 <grupAdi>
 
 gibi. Eğer aynı id ye sahip başka bir grup varsa hata verecek ve grubunuz oluşmayacaktır. Yani numarayı verirken herhangi bir tereddüt yaşamanıza gerek yok.
 
-## Gruba Yeni Kullanıcı Ekleme
+## 3-Gruba Yeni Kullanıcı Ekleme
 
 Gruba yeni bir kullanıcı eklemek için;
 
@@ -1037,7 +1269,7 @@ komutunu kullanabiliriz.  Şimdi yeni oluşturmuş olduğumuz gruba kullanıcım
 
 Grubumuza "serdar" kullanıcısını ekledik ve kontrolünü gerçekleştirdik. Artık oluşturmuş olduğumuz grubun yeni bir üyesi var :)
 
-## Kullanıcı Gruplarını Sorgulama
+## 4-Kullanıcı Gruplarını Sorgulama
 
 Grup sistemini ve gruba yeni kullanıcı eklemeyi öğrenmiş olduk. Şimdi sistemde kayıtlı olan kullanıcıların hangi grupların üyesi olduğunu görelim.
 
@@ -1075,7 +1307,7 @@ ID numaraları üçe ayrılır;
 
 Böylece Kullanıcının **ne kullanıcısı** olduğunu anlayabiliriz.
 
-## Kullanıcıyı Gruptan Çıkarmak
+## 5-Kullanıcıyı Gruptan Çıkarmak
 
 Eğer grup üyesi olan bir kullanıcıyı gruptan çıkarmak istersek **`gpasswd`** komutunun **`-d`** parametresini kullanırız.
 
@@ -1090,6 +1322,446 @@ sudo gspasswd -d <kullaniciAdi> <GrupAdi>
 Böylece grubumuzdan **serdar** kullanıcısını çıkarmış olduk.
 
 
+
+# LINUX SÜREÇ YÖNETİMİ
+
+Sistemimizde çalışan her program bir süreçten oluşmaktadır. Bu süreç sistemin kaynaklarını kullanmaktadır. Süreç ön planda veya arka planda çalışarak kaynakları kullanabilir. 
+
+Bu durumda *sistemden verimli şekilde yararlanmak için **sistem yönetimi iyi yapılmalıdır.*** 
+
+Eğer sistem yönetimi iyi yapılmazsa **bir süreç sistemin kaynaklarını boş yere kullanıp sistemi gereksiz yavaşlatacaktır.**
+
+
+
+Sistemde bulunan her sürecin kendine ait eşsiz bir `PID(process-identifier)` değeri(numarası) vardır.
+
+Bazı komutlar ile bu `PID`değerini kullanabilir ve süreçleri sonlandırıp, arkada gereksiz yere çalışan süreçlerin önüne geçebiliriz.
+
+
+
+## 1-ps komutu
+
+`ps` komutumuz sistem üzerinde **aktif olan süreçlerle ** ilgili **durum, boyut, isim, sahiplik, CPU zamanı vb** bilgileri görmemizi sağlamaktadır.
+
+ps komutu ile birlikte kullandığımız bazı parametreler şu şekildedir;
+
+```
+-A : Sistemdeki bütün süreçleri listeler.
+-a : Belirli bir terminal kontrölündeki o an çalışan süreçleri listeler
+-r : Sadece çalışmakta olan süreçleri listeler.
+-x : Bir terminal kontrolünde olmayan süreçleri listeler.
+-u : Süreç sahiplerini listeler.
+-f : Süreçler arasındaki parent-child ilişkilerini gösterir.
+-l : Uzun formatlı bir liste üretir.
+-w : Bir sürecin komut satırı parametrelerini gösterir.
+-T  : Komutun girildiği terminalde başlatılan süreçleri listeler.
+-p  : PID değeri girilen sürecin bilgilerini gösterir.
+```
+
+--------------
+
+```
+ps
+```
+
+komutu tek başına kullanıldığında konsol üzerinde çalıştırılmış süreçleri göstermektedir.
+
+<img src="img/9.png" style="zoom:130%;" />
+
+
+
+
+
+Genel olarak sistem üzerinde ki tüm işlemleri görmek, sistemde ve terminallerde çalışan tüm süreç ve sahiplerini göstermek için;
+
+```
+ps -aux
+```
+
+komutunu kullanırız.
+
+![](img/8.png)
+
+Komutumuzu kullandık ve karşımıza listemiz geldi. Peki listede ki bu sütun başlıkları ne anlama gelmektedir?
+
+```
+USER : Sürecin sahibi olan kullanıcı.
+PID  : Sürecin unique değeri.
+%CPU : CPU kullanımının yüzde kaçının ilgili sürece ait olduğu.
+%MEM : Sürecin belleğin yüzde kaçını kullandığı bilgisi.
+VSZ  : Sürecin kullandığı sanal bellek bilgisi.
+RSS  : Sürecin kullandığı fiziksel bellek bilgisi.
+TTY  : Süreci kontrol eden terminal.
+STAT : Sürecin o anki durumu. Bazı STAT değerlerinin anlamları ;
+    -S : Sürecin beklemede olduğunu gösterir. (kesilebilir uyku, olayın tamamlanmasını beklemek)
+    -R : Sürecin o an çalıştığını,CPU'da işlem gördüğünü belirtir. (Çalışıyor veya çalıştırılabilir )
+    -D : Süreç kesilemez bir şekilde uykuda.
+    -T : Sürecin debugger'da incelendiğini ya da durdurulduğunu gösterir.
+    -Z : Süreç zombi durumunda.
+    -X : Ölü durumda
+    
+    < : Yüksek Öncelikli
+    N : Düşük Öncelikli
+    S : Oturum Lider
+    l : Çok İş Parçacıklı
+    + : Ön Plan Süreç Grubu
+    
+START : Sürecin başlangıç zamanı.
+TIME : Sürecin CPU'da harcadığı süre.
+COMMAND :  Sürecin adı ve komut satırı parametreleri.
+
+
+```
+
+
+
+e : Sistemde çalışan her süreçtir.
+
+```
+ps -e
+```
+
+
+
+u : Kullanıcı adına göre süreç bilgileri verir.
+
+```
+ps -u <kullanici>
+ps -u serdar
+```
+
+
+
+p : Süreç numarasına(PID) göre süreç bilgisi verir.
+
+```
+ps -p <PID-Numarasi>
+ps -p 1
+```
+
+
+
+Bir süreci özel olarak aramak istersek `grep` komutunu kullanabiliriz. Bu komut yardımıyla istediğimiz süreci getirir ve bilgileri görebiliriz. Örnek olarak;
+
+```
+ps -aux | grep <süreçAdı>
+ps -aux | grep "bash"
+```
+
+
+
+## 2-pstree
+
+Süreçleri hiyerarşik şekilde görüntülememizi sağlar. Örnek olarak;
+
+```
+pstree
+```
+
+![](img/10.png)
+
+
+
+## 3-top
+
+`top` komutu da `ps` komutunun yaptığı gibi süreçler hakkında bilgi verir ancak `ps` komutundan farklı olarak 3 saniyede bir yenilenecek şekilde anlık değişimleri gösterir.
+
+Genel olarak kullanımı;
+
+```
+top
+```
+
+Diğer bir kullanımında **kaç saniyede bir yenileneceğini kendimiz seçebiliriz**
+
+Bunun için `-d` parametresini kullanırız. Örnek Kullanımı;
+
+```
+top -d <saniye>
+top -d 1
+```
+
+
+
+Süreç tablosundan çıkmak istersek `q` tuşuna basmamız yeterli olacaktır.
+
+
+
+## 4-pgrep
+
+Çalışan süreçlerin PID numarasını bulmamızı sağlayan komuttur.
+
+Bir sürecin adını biliyorsak ve `PID` numarasını öğrenmek istersek bu komutu kullanabiliriz.
+
+Örnek kullanımı şu şekildeldir;
+
+```
+pgrep <süreçAdi>
+pgrep "bash"
+```
+
+![](img/11.png)
+
+
+
+Örneğin biz süreç sahibinin(hedef kullanıcı), süreç isimleriyle beraber numaralarını da görmek istersek;
+
+```
+pgrep -lu <kullanici>
+pgrep -lu serdar
+```
+
+
+
+![](img/12.png)
+
+
+
+## 5-kill-killall
+
+Süreçleri sonlandıma işleminde kullanılmaktadır. 
+
+```
+kill <süreçNumarası(PID)>
+kill 2360
+```
+
+Süreç numarası ile süreci sonlandırır.
+
+
+
+```
+kill -9 <süreçNumarası(PID)>
+kill -9 2470
+```
+
+Kapanmaya karşı direnen süreçleri `-9` parametresi ile sonlandırabiliriz.
+
+------------
+
+
+
+```
+killall <süreçAdı>
+killall armitage
+```
+
+`killall` komutu ile süreçleri ismiyle sonlandırırız.
+
+
+
+```
+killall -9 <süreçAdı>
+killall -9 armitage
+```
+
+`-9` parametresiyle kapanmaya direnen süreçleri ismiyle sonlandırırız.
+
+
+
+## 6-xkill
+
+Yanıt vermeyen bir programı grafik arayüzünden fare imlecimiz ile kapatmamızı sağlar. Komutu yazdıktan sonra fare imlecimizde "X" (Çarpı) işareti belirir. Daha sonra kapatmak istediğimiz programa fare ile tıklayarak kapanmasını sağlarız.
+
+```
+xkill
+```
+
+
+
+## 7-fg-bg-jobs
+
+Bu üç komutumuz (`fg` , `bg`, `jobs`)  işlem süreçlerini yönetmemize yardımcı olmaktadır.
+
+Biz konsoldan bir komut verdiğimiz zaman **işlem sürecimiz bitmeden konsoldan başka bir komut vermemiz mümkün değildir.**
+
+Böyle bir durumda yeni bir komut girişi yapmak istersek ***konsolda çalışan sürecimizi arka plana alarak*** komutumuzu bu şekilde çalıştırabiliriz.
+
+İşte bu üç komutumuzda;
+
+ konsolda çalıştırdığımız süreci arkaplana
+
+arkaplanda ki süreci ön plana taşıma işleve sahiptir.
+
+`Jobs` komutu ise bu sürecin durumunu takip etmemize olanak sağlamaktadır. 
+
+
+
+Şimdi bir örnek ile bunu yapalım.   **Konsoldan** 'firefox' uygulamasını açıyorum.
+
+
+
+![](img/1.gif)
+
+
+
+Konsolumuz artık *firefox* uygulamasını çalıştırmakla meşgul. Yani *firefox* açıkken konsol üzerinden yeni bir komut girmemiz mümkün değildir.  Bu sebeple konsol üzerinde çalışan *firefox* uygulamasını **`ctrl+z` tuşu ile durdurup arka plana atmalıyız.** 
+
+Bu işlemle konsol üzerinde çalışan *firefox* uygulamasını **durdurup** arka plana atılacaktır.
+
+Böylece konsolumuz yeni komutları girmeye müsait olacaktır ve *firefox* uygulamasıyla meşgul olmayacaktır.
+
+İlk `ctrl+z` komutumuzla konsol uygulamanın durdurulduğu bilgisini verecektir. Ancak biz sonrasında **durdurulan uygulamayı görmek istersek** **`jobs`** komutunu kullanırız.
+
+![](img/14.png)
+
+Böylece *firefox* uygulamasını durdurduk. Bu durumda **arayüzden firefox uygulaması üzerinde bir şeyler yapmaya çalıştığınızda işe yaramayacağını görebilirsiniz**. Uygulama arka planda durdurulup  *hazır* beklemektedir
+
+Artık konsolumuza yeni komutlarımızı girebiliriz. 
+
+Ancak biz **konsol üzerinden komutlarımızı verirken firefoxunda çalışmasını istiyoruz**
+
+İşte bu durumda;
+
+```
+bg
+```
+
+komutumuzu kullanıyoruz. Böylece uygulamamız **arkaplanda çalışmaya** devam ediyor. Hem konsoldan komutlarımızı giriyoruz hem de firefox uygulamasını kullanabiliyoruz.
+
+
+
+Eğer arkaplanda çalışan firefox uygulamamızı tekrar konsol üzerinden çalıştırmak istersek de;
+
+```
+fg
+```
+
+komutunu kullanıyoruz.
+
+
+
+# LINUX DİSK İŞLEMLERİ
+
+Diski formatlama, tarama, düzeltme, bölüm oluşturma vs. işlemleri gerçekleştirmek için bir takım komutlar vardır.
+
+**HATIRLATMA** : Disk üzerinde işlem yapabilmek için o diskin sistem tarafından kullanılmaması gerekmektedir.
+
+
+
+## 1-fdisk
+
+Komut temel parametreler ile birlikte kullanılmaktadır.
+
+Disk bölümlerini listelemek için `-l` parametresini alır.
+
+```
+fdisk -l
+```
+
+![](img/15.png)
+
+
+
+Parametresiz
+
+```
+fdisk /dev/sda
+```
+
+şeklinde kullanırız. Bu durumda karşımıza yardım menüsü gelecektir ve belirli parametreler ile yapılabilecekleri gösterecektir. Örnek olarak;
+
+![](img/16.png)
+
+İstediğimiz parametreyi yazıp kullanabiliriz.
+
+
+
+## 2-cfdisk
+
+`fdisk`'in görsel arayüz versiyonudur. 
+
+```
+cfdisk
+```
+
+komutu ile açabiliriz.
+
+![](img/17.png)
+
+
+
+## 3-fsck
+
+Disteki hatalı blokları düzeltmek için bu komutu kullanırız. Örnek olması açısından USB disk ile onarma işlemi yapalım.
+
+Öncelikle USB diskinin  adını öğrenmek için `fdisk -l` komutunu kullanıyorum.
+
+![](img/19.png)
+
+
+
+/dev/sdb1 USB diskin adıymış. Artık onarma işlemini yapabiliriz.
+
+Bunun için;
+
+```
+fsck -p /dev/sdb1
+```
+
+komutunu kullanıyoruz.
+
+
+
+
+
+## 4-df
+
+`df` komutu disklerin ***dosya sistemi,boyutu,doluluk oranı,bağlandığı yer(mount)*** gibi bilgileri liste halinde verir.
+
+Eğer çıktıların daha okunaklı olmasını(MB,GB) istiyorsak `-h` parametresini kullanabiliriz. 
+
+```
+df -h
+```
+
+![](img/18.png)
+
+```
+df -hm      MB cinsi
+```
+
+```
+df -hk      KB cinsi
+```
+
+
+
+## 5-umount(Diski Bağlantıdan Koparmak)
+
+Disk bağlantısının sistemden koparmak için `umount` komutunu kullanırız.
+
+Öncelikle disk hakkında genel bilgi sahibi olmak için `df -h` komutunu kullanalım.
+
+![](img/20.png)
+
+USB diskinin adı `/dev/sdb1` ve sisteme bağlandığı konum `/media/serdar/Ubuntu....` diziniymiş.
+
+Gerekli bilgileri öğrendik. Artık USB diski sistemden çıkarabiliriz. Bunun için;
+
+```
+umount /dev/sdb1
+```
+
+komutunu kullanarak sistemden bağını koparabiliriz.
+
+![](img/21.png)
+
+Artık sistem tarafından görünmüyor.
+
+
+
+## mount(Diski Bağlamak)
+
+Sistemden koparmış olduğumuz USB diski tekrar bağlamak için `mount` komutunu kullanırız.
+
+```
+mount <aygıtAdı> <BaglanılacakKonum>
+```
+
+Örneğin masaüstünde bir dizin oluşturup,  diskin bağlanacağı konum seçelim.
+
+![](img/22.png)
 
 
 

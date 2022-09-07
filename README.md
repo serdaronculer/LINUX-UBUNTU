@@ -1,4 +1,4 @@
-﻿﻿﻿﻿﻿# **LINUX NEDİR**
+# **LINUX NEDİR**
 
 Linux bilinenin aksine bir işletim sistemi değil, **işletim sistemi çekirdeğidir.** 
 
